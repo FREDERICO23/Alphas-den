@@ -4,8 +4,9 @@
 
 	{% for post in object_list %}
 		<div class="post-entry">
-			<h2><a href=" {% url 'post_detail' post.pk %} ">{{ post.title }}</a></h2>
+			<h5><a href=" {% url 'post_detail' post.pk %} ">{{ post.title }}</a></h5>
 			<p>{{ post.body }}</p>
+			<p>Author: {{post.author}}</p>
 		</div>
 	{% endfor %}
 

@@ -3,31 +3,55 @@
 <html>
 <head>
 	<title>Alphas Den Blog</title>
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
 	<link href="{% static 'css/base.css' %}" rel="stylesheet">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
 	<div>
 		<header>
-			<div class="nav-left">
-				<h1><a href="{% url 'home' %}">Alphas Den</a></h1>
-			</div>
-			<div class="nav-right">
-				<a href="{% url 'post_new' %}">+ New Blog Post</a>
-			</div>		
+			<nav>
+			    <div class="nav-wrapper" >
+			      <a href="{% url 'home' %}" class="brand-logo">Alphas Den</a>
+			      <ul id="nav-mobile" class="right hide-on-med-and-down">
+			      	{% if user.is_authenticated %}
+			      	<li><a href="{% url 'logout' %}">Log Out</a></li>
+			      	{% else %}
+			        <li><a href="{% url 'login' %}">Login</a></li>
+			        {% endif %}
+			        <li><a href="{% url 'signup' %}">Signup</a></li>
+			        <li><a href="{% url 'post_new' %}">+ New Blog Post</a></li>
+			      </ul>
+			    </div>
+			  </nav>	
 		</header>
-
-		{% if user.is_authenticated %}
-			<p>Hi {{ user.username }}!</p>
-			<p><a href="{% url 'logout' %}">Log Out</a></p>
-		{% else %}
-			<p>You are not logged in.</p>
-			<a href="{% url 'login' %}">Log In</a></br>
-			<a href="{% url 'signup' %}">Sign Up</a>
-		{% endif %}
 
 	{% block content %}
 	{% endblock %}
 	</div>
+	 <footer class="page-footer" >
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Be an Alpha today</h5>
+                <p class="grey-text text-lighten-4">Join our email list</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
 </body>
 </html>
